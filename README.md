@@ -3,8 +3,8 @@
 A polyglot, event-driven engineering environment designed to eliminate the "works on my machine" anti-pattern and minimize developer cognitive load. This spec treats hardware as Infrastructure as Code, enforces defence-in-depth security with no plaintext credential exposure, and aggressively replaces JVM-heavy tools with compiled-language alternatives to reduce idle RAM consumption.
 
 **Target Hardware:**
-- Windows 11 — MSI Raider (16GB RAM)
-- macOS — MacBook Air M4 (16GB RAM)
+- Windows 11 - MSI Raider (16GB RAM)
+- macOS - MacBook Air M4 (16GB RAM)
 
 ---
 
@@ -24,19 +24,19 @@ A polyglot, event-driven engineering environment designed to eliminate the "work
 
 ## 1. Core Engineering Principles
 
-**Pragmatism Over Purism** — Tools are selected based on objective utility, performance, and cognitive ease. If a GUI reduces error rate and review time compared to a CLI for a given task, the GUI is the standard.
+**Pragmatism Over Purism** - Tools are selected based on objective utility, performance, and cognitive ease. If a GUI reduces error rate and review time compared to a CLI for a given task, the GUI is the standard.
 
-**Best Tool for the Purpose** — Unified cross-platform tools are only used if they provide a measurable performance boost. Otherwise, the apex native tool for each OS is used (e.g., Ghostty on Metal for macOS; Windows Terminal on DirectX for Windows).
+**Best Tool for the Purpose** - Unified cross-platform tools are only used if they provide a measurable performance boost. Otherwise, the apex native tool for each OS is used (e.g., Ghostty on Metal for macOS; Windows Terminal on DirectX for Windows).
 
-**Architectural Fluidity** — The environment supports both high-throughput Microservices (Go/C#) and Modular Monoliths (Laravel/Django). The toolchain adapts to the project's optimal pattern without forcing a one-size-fits-all approach.
+**Architectural Fluidity** - The environment supports both high-throughput Microservices (Go/C#) and Modular Monoliths (Laravel/Django). The toolchain adapts to the project's optimal pattern without forcing a one-size-fits-all approach.
 
 ---
 
 ## 2. Unified Toolchain & Scope Matrix
 
 **Scope Legend:**
-- `UNIVERSAL` — Deployed identically on both Windows and macOS nodes
-- `CONTEXTUAL` — Task-specific or platform-specific; deployed only when the relevant workload is active
+- `UNIVERSAL` - Deployed identically on both Windows and macOS nodes
+- `CONTEXTUAL` - Task-specific or platform-specific; deployed only when the relevant workload is active
 
 | Architectural Layer | Core Tooling | Scope | Windows | macOS M4 |
 |---|---|---|---|---|
@@ -78,7 +78,7 @@ To prevent I/O throttling, polyglot formatting errors, and system crashes on Win
 Repositories are cloned into the **native WSL ext4 filesystem**, not the Windows filesystem. Cloning to the Windows filesystem causes severe I/O slowdowns on Linux compilation benchmarks due to virtualization cross-filesystem overhead.
 
 ```
-# Target path — substitute <your-username> with your WSL username
+# Target path - substitute <your-username> with your WSL username
 \\wsl.localhost\Ubuntu\home\<your-username>\Projects
 ```
 
@@ -111,7 +111,7 @@ git config --global core.autocrlf false
 
 The centralized relational database schema is managed declaratively via **Atlas** rather than language-specific ORM migrations colliding across polyglot service boundaries.
 
-For inter-service boundaries, backends output **OpenAPI** or **Protobuf** specifications. **Orval** reads these local specs automatically to compile type-safe client repositories, React Query hooks, and Zod schemas — converting backend changes into instant frontend compile-time errors.
+For inter-service boundaries, backends output **OpenAPI** or **Protobuf** specifications. **Orval** reads these local specs automatically to compile type-safe client repositories, React Query hooks, and Zod schemas - converting backend changes into instant frontend compile-time errors.
 
 ### The Centaur Heuristic: AI Engine Allocation
 
@@ -120,8 +120,8 @@ AI execution is explicitly allocated to two engines based on the contextual dept
 **Cursor** *(Tab Autocomplete + Localised Scaffolding)*
 Invoked for greenfield code construction, real-time typing completion loops, and single-package component generation. Operations are guided by rules hardcoded in the project's `.cursorrules` file.
 
-**Claude Code + VS Code** *(Agentic Cross-Service Refactoring — Optional)*
-Invoked via the terminal wrapper inside a dedicated VS Code window when an edit or dependency update impacts multiple decoupled microservices or database definitions. Because Cursor isolates its environment from the native Anthropic terminal daemon, VS Code serves as the secondary execution interface for deep multi-file refactoring runs. Claude Code's 1M-token context horizon holds the entire multi-language project state simultaneously, preventing silent contract breakages across service boundaries. Requires a Claude Pro or Max subscription — engineers without one should default to Cursor for all tasks, which covers standard daily workflows.
+**Claude Code + VS Code** *(Agentic Cross-Service Refactoring - Optional)*
+Invoked via the terminal wrapper inside a dedicated VS Code window when an edit or dependency update impacts multiple decoupled microservices or database definitions. Because Cursor isolates its environment from the native Anthropic terminal daemon, VS Code serves as the secondary execution interface for deep multi-file refactoring runs. Claude Code's 1M-token context horizon holds the entire multi-language project state simultaneously, preventing silent contract breakages across service boundaries. Requires a Claude Pro or Max subscription - engineers without one should default to Cursor for all tasks, which covers standard daily workflows.
 
 ---
 
@@ -175,7 +175,7 @@ Full workspace provisioning to operational parity in approximately 30 minutes.
 
 ### Step-by-Step Developer Execution
 
-**Step 1 — Initialize Universal Environment Tools**
+**Step 1 - Initialize Universal Environment Tools**
 
 Fire the remote configuration sync engine from your native terminal profile to provision `mise`, `pnpm` via Corepack, `Lefthook`, `Trivy`, and the Bitwarden CLI. Replace `<org-dotfiles-repo>` with your organization's chezmoi dotfiles repository:
 
@@ -183,7 +183,7 @@ Fire the remote configuration sync engine from your native terminal profile to p
 sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply <org-dotfiles-repo>
 ```
 
-**Step 2 — Authenticate Environment Identity Vaults**
+**Step 2 - Authenticate Environment Identity Vaults**
 
 ```bash
 bw login
@@ -192,11 +192,11 @@ bws login
 
 Input the BWS organization machine token when prompted to activate runtime secret injection hooks.
 
-**Step 3 — Initialize Local Filesystem Structures**
+**Step 3 - Initialize Local Filesystem Structures**
 
 Before checking out code, manually initialize folder structures inside the native filesystem to bypass the Windows cross-filesystem virtualization barrier.
 
-*Windows (WSL) — substitute `<your-username>` with your WSL username:*
+*Windows (WSL) - substitute `<your-username>` with your WSL username:*
 ```bash
 mkdir -p /home/<your-username>/Projects && cd ~/Projects
 ```
@@ -208,20 +208,20 @@ mkdir -p ~/Projects && cd ~/Projects
 
 Open GitHub Desktop, click **Clone**, and target this initialized directory.
 
-**Step 4 — Bridge IDE Runtime Communication**
+**Step 4 - Bridge IDE Runtime Communication**
 
 Launch the cloned workspace in Cursor. On Windows, explicitly initialize the **"Connect to WSL"** bridge from the Command Palette before installing or running language server extensions.
 
-**Step 5 — Secure Local Quality Gates**
+**Step 5 - Secure Local Quality Gates**
 
 ```bash
 lefthook install
 trivy fs . --severity CRITICAL
 ```
 
-**Step 6 — Bootstrap Agent Runtimes via VS Code Bridge (Optional)**
+**Step 6 - Bootstrap Agent Runtimes via VS Code Bridge (Optional)**
 
-> **Prerequisite:** This step requires a Claude Pro or Max subscription. Skip this step if you do not hold one — Cursor covers all standard daily engineering workflows without it.
+> **Prerequisite:** This step requires a Claude Pro or Max subscription. Skip this step if you do not hold one - Cursor covers all standard daily engineering workflows without it.
 
 Open a vanilla VS Code instance mapped to your execution host. Install the Claude Code CLI using explicit global package manager parameters:
 
@@ -241,7 +241,7 @@ Execute `claude` in your terminal to complete verification against the organizat
 
 **Recovery:**
 
-1. Do **not** re-execute the initialization command — this will corrupt partial state files.
+1. Do **not** re-execute the initialization command - this will corrupt partial state files.
 2. Run `chezmoi diff` to locate what files were cleanly parsed.
 3. Execute `chezmoi apply --dry-run` to trace remaining un-indexed assets safely.
 4. If configuration states are broken, force a reset:
@@ -278,7 +278,7 @@ bws run pnpm dev
 wsl --shutdown
 ```
 2. Wait 10 seconds for the host OS memory registers to clear.
-3. Confirm recovery in Windows Task Manager — verify the `Vmmem` process footprint has dropped below 500MB.
+3. Confirm recovery in Windows Task Manager - verify the `Vmmem` process footprint has dropped below 500MB.
 4. Re-initialize Linux: `wsl`
 5. Boot storage runtimes **sequentially** to prevent memory spikes:
    - Redpanda first
@@ -289,7 +289,7 @@ wsl --shutdown
 
 ## 8. RAM Budget Reference
 
-### Windows Node — MSI Raider (16GB Host, 10GB WSL2 Hard Cap)
+### Windows Node - MSI Raider (16GB Host, 10GB WSL2 Hard Cap)
 
 | Component | Allocation |
 |---|---|
@@ -302,7 +302,7 @@ wsl --shutdown
 | Brave Browser (4–6 Active Documentation Tabs) | 1.1 GB |
 | **Total Active System Consumption** | **~8.8 GB** |
 
-### macOS Node — MacBook Air M4 (16GB Unified Memory)
+### macOS Node - MacBook Air M4 (16GB Unified Memory)
 
 | Component | Allocation |
 |---|---|
